@@ -9,7 +9,7 @@
 import Foundation
 
 class NetworkManagerClass{
-    func fetchQuizBloc(difficulty: String, category: String, type: String, completionHandler: @escaping ([Results]) -> Void) {
+    func fetchQuizBloc(difficulty: String, category: String, type: String, completionHandler: @escaping ([TriviaQuestion]) -> Void) {
         let full_url = URL(string: url + "amount=10" +  "&category=\(category)&difficulty=\(difficulty)&type=\(type)")!
         
         
@@ -26,8 +26,8 @@ class NetworkManagerClass{
         }
 
         if let data = data,
-          let openTriviaResponse = try? JSONDecoder().decode(OpenTriviaResponse.self, from: data) {
-            completionHandler(openTriviaResponse.results ?? [])
+          let openTriviaResponse = try? JSONDecoder().decode(TriviaQuestionResponse.self, from: data) {
+            completionHandler(openTriviaResponse.questions ?? [])
         }
       })
       task.resume()

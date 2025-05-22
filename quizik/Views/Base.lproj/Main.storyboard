@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Svu-Ab-LFI">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -10,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Start Page View Controller-->
+        <!--Welcome View Controller-->
         <scene sceneID="Mcc-hn-Dlj">
             <objects>
-                <viewController id="IbZ-sL-2EK" customClass="StartPageViewController" customModule="quizik" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="IbZ-sL-2EK" customClass="WelcomeViewController" customModule="quizik" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Wt0-gU-i6X">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -28,7 +27,7 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="startQuizButtonAction:" destination="IbZ-sL-2EK" eventType="touchUpInside" id="zQE-rk-raT"/>
+                                    <action selector="handleStartButtonTapped:" destination="IbZ-sL-2EK" eventType="touchUpInside" id="zQE-rk-raT"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -49,10 +48,10 @@
             </objects>
             <point key="canvasLocation" x="357.97101449275362" y="56.919642857142854"/>
         </scene>
-        <!--Quiz Category View Controller-->
+        <!--Category Selection View Controller-->
         <scene sceneID="psp-za-51O">
             <objects>
-                <viewController storyboardIdentifier="QuizCategoryViewController" id="x56-hW-mUN" customClass="QuizCategoryViewController" customModule="quizik" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="QuizCategoryViewController" id="x56-hW-mUN" customClass="CategorySelectionViewController" customModule="quizik" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yzy-NG-lse">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -97,8 +96,8 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <connections>
-                                            <outlet property="categoryImage" destination="A6p-Cn-kdC" id="ioR-Z0-9y8"/>
-                                            <outlet property="categoryLabel" destination="LP9-GD-FpM" id="l12-Zn-fIi"/>
+                                            <outlet property="iconImageView" destination="A6p-Cn-kdC" id="ioR-Z0-9y8"/>
+                                            <outlet property="titleLabel" destination="LP9-GD-FpM" id="l12-Zn-fIi"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

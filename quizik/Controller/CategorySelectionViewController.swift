@@ -8,11 +8,11 @@
 
 import UIKit
 
-class QuizCategoryViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class CategorySelectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     var array = ["First Cell", "Second Cell", "Third Cell", "Fourth Cell", "Fifth Cell"]
     
-    var category_array: [TriviaCategory]?
+    var categories: [TriviaCategory]?
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -40,15 +40,15 @@ class QuizCategoryViewController: UIViewController, UICollectionViewDataSource, 
         NetworkManagerClass().fetchCategories(){
             [weak self] (category) in
             
-            self?.category_array = category
-            print("_response is :", self!.category_array!);
-            if self!.category_array != nil{
-                self!.updateCategoryView()
+            self?.categories = category
+            print("_response is :", self!.categories!);
+            if self!.categories != nil{
+                self!.reloadCategoryData()
             }
         }
     }
     
-    func updateCategoryView() {
+    func reloadCategoryData() {
         DispatchQueue.main.async {
             self.dismiss(animated: true, completion: nil)
             self.categoryCollectionView.reloadData()
@@ -56,23 +56,23 @@ class QuizCategoryViewController: UIViewController, UICollectionViewDataSource, 
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.category_array?.count ?? 0
+        return self.categories?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "proCell", for: indexPath) as! QuizCategoryCollectionViewCell
         print("The array is: ", array)
-        if let  categoryName = category_array![indexPath.row].name , category_array != nil {
-            cell.categoryLabel.text = categoryName
-            cell.categoryImage.image = UIImage(named: imageNameForCategory(categoryName))
+        if let  categoryName = categories![indexPath.row].name , categories != nil {
+            cell.titleLabel.text = categoryName
+            cell.iconImageView.image = UIImage(named: imageNameForCategory(categoryName))
         }
-        cell.shadowDecorate()        
+        cell.applyCardStyle()        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if self.category_array != nil {
-           let selectedCategoryId = self.category_array![indexPath.row].id
+        if self.categories != nil {
+           let selectedCategoryId = self.categories![indexPath.row].id
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "QuizViewController") as! QuizViewController
             vc.category_id = "\(selectedCategoryId ?? 0)"
@@ -94,7 +94,7 @@ class QuizCategoryViewController: UIViewController, UICollectionViewDataSource, 
     }
 }
 
-extension QuizCategoryViewController {
+extension CategorySelectionViewController {
     func imageNameForCategory(_ category: String) -> String {
         switch category {
         case "General Knowledge": return "general_knowledge"

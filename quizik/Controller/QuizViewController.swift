@@ -19,7 +19,7 @@ class QuizViewController: UIViewController {
     @IBOutlet weak var optionButton3: QuizOptionButton!
     @IBOutlet weak var optionButton4: QuizOptionButton!
     
-    private var _response: [Results]?
+    private var _response: [TriviaQuestion]?
     var category_id: String!
     var question: String!
     var quizOptionsList = [String?]()

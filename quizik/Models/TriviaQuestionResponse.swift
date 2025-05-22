@@ -7,25 +7,25 @@
 //
 
 import Foundation
-struct OpenTriviaResponse : Codable {
-	let response_code : Int?
-	let results : [Results]?
+struct TriviaQuestionResponse : Codable {
+	let responseCode : Int?
+	let questions : [TriviaQuestion]?
 
 	enum CodingKeys: String, CodingKey {
 
-		case response_code = "response_code"
-		case results = "results"
+		case responseCode = "response_code"
+		case questions = "results"
 	}
 
 	init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
-		response_code = try values.decodeIfPresent(Int.self, forKey: .response_code)
-		results = try values.decodeIfPresent([Results].self, forKey: .results)
+        responseCode = try values.decodeIfPresent(Int.self, forKey: .responseCode)
+        questions = try values.decodeIfPresent([TriviaQuestion].self, forKey: .questions)
 	}
 
 }
 
-struct Results : Codable {
+struct TriviaQuestion : Codable {
     let category : String?
     let type : String?
     let difficulty : String?
@@ -35,10 +35,10 @@ struct Results : Codable {
 
     enum CodingKeys: String, CodingKey {
 
-        case category = "category"
-        case type = "type"
-        case difficulty = "difficulty"
-        case question = "question"
+        case category
+        case type
+        case difficulty
+        case question
         case correct_answer = "correct_answer"
         case incorrect_answers = "incorrect_answers"
     }

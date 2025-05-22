@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StartPageViewController: UIViewController {
+class WelcomeViewController: UIViewController {
     
     @IBOutlet weak var startQuizButton: UIButton!
     
@@ -18,7 +18,7 @@ class StartPageViewController: UIViewController {
         addGradientBackground()
     }
     
-    @IBAction func startQuizButtonAction(_ sender: Any) {
+    @IBAction func handleStartButtonTapped(_ sender: Any) {
         
         UIView.animate(withDuration: 0.1,
                        animations: {

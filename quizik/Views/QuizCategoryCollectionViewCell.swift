@@ -10,13 +10,13 @@ import UIKit
 
 class QuizCategoryCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var categoryImage: UIImageView!
-    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
     
 }
 
 extension UICollectionViewCell {
-    func shadowDecorate() {
+    func applyCardStyle() {
         let radius: CGFloat = 10
         contentView.layer.cornerRadius = radius
         contentView.layer.borderWidth = 1
